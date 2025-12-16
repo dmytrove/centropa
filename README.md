@@ -18,7 +18,37 @@ An interactive 3D visualization of life events displayed as a constellation on a
 
 ## Usage
 
-Simply open `index.html` in a modern web browser (Chrome, Firefox, Edge, Safari).
+This viewer loads `bios_manifest.json` via `fetch()`, so it’s best run from a local HTTP server (not `file://`).
+
+### Option A: VS Code Live Server
+
+If you use VS Code, the **Live Server** extension is the simplest option.
+
+### Option B: Python (built-in)
+
+From the repo root:
+
+```powershell
+cd C:\github\centropa
+python -m http.server 8000
+```
+
+Then open:
+
+- http://localhost:8000/
+
+> Important: serve the **repo root folder** (the folder that contains
+> `index.html` and the `data/` and `assets/` directories). If you start a
+> server in a different folder, the app may show UI overlays but fail to load
+> the 3D models.
+
+### Option C: Node.js (one-liner)
+
+```bash
+npx serve
+```
+
+Then open the printed URL (it should serve the repo root).
 
 ### Controls
 
@@ -31,12 +61,19 @@ Simply open `index.html` in a modern web browser (Chrome, Firefox, Edge, Safari)
 ## File Structure
 
 ```
-dist/
+./
 ├── index.html              # Main viewer application
-├── bios_manifest.json      # Biography list
-├── edith-umova.glb         # Biography 1 (3D model + events)
-├── michal-warzager.glb     # Biography 2 (3D model + events)
-└── stanislaw-wierzba.glb   # Biography 3 (3D model + events)
+├── assets/
+│   ├── main.js             # Application logic
+│   └── styles.css          # Styling
+├── data/
+│   ├── bios_manifest.json  # Biography list
+│   ├── edith-umova.glb     # Biography 1 (3D model + events)
+│   ├── michal-warzager.glb # Biography 2 (3D model + events)
+│   └── stanislaw-wierzba.glb # Biography 3 (3D model + events)
+├── README.md               # Documentation
+├── CLAUDE.md               # Claude Code instructions
+└── letter.md               # Delivery letter for GLB files
 ```
 
 ## Technical Details
